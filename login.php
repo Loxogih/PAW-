@@ -322,3 +322,89 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
         }
     </style>
 </head>
+<body>
+    <div class="login-wrapper">
+        <!-- Left Side - University Information -->
+        <div class="university-info">
+            <div class="university-logo">UA1</div>
+            <h1>Université<br>d'Alger 1</h1>
+            <div class="subtitle">Benyoucef Benkhedda</div>
+            <div class="system-name">Attendance Management System</div>
+        </div>
+        
+        <!-- Right Side - Login Form -->
+        <div class="login-container">
+            <div class="login-header">
+                <h2>Welcome Back</h2>
+                <p>Sign in to your account</p>
+            </div>
+            
+            <form method="POST" action="">
+                <?php if (isset($_GET['logout']) && $_GET['logout'] == 'success'): ?>
+                    <div class="success-message">
+                        You have been successfully logged out.
+                    </div>
+                <?php endif; ?>
+                
+                <?php if ($error): ?>
+                    <div class="error-message">
+                        <?php echo htmlspecialchars($error); ?>
+                    </div>
+                <?php endif; ?>
+                
+                <div class="form-group">
+                    <label class="form-label" for="username">Username</label>
+                    <input type="text" id="username" name="username" class="form-input" placeholder="Enter your username" required 
+                           value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit" name="login" class="login-btn">Sign In</button>
+                
+                <div class="demo-section">
+                    <div class="demo-title">Demo Accounts</div>
+                    
+                    <div class="demo-account" onclick="fillCredentials('admin', 'password')">
+                        <div class="account-type">⚙️ Admin Account</div>
+                        <div class="account-info">Username: admin | Password: password</div>
+                        <div class="account-details">System Administrator - Full Access</div>
+                    </div>
+                    
+                    <div class="demo-account" onclick="fillCredentials('samy.char', 'password')">
+                        <div class="account-type">👨‍🎓 Student Account</div>
+                        <div class="account-info">Username: samy.char | Password: password</div>
+                        <div class="account-details">Samy Charallah - Computer Science</div>
+                    </div>
+                    
+                    <div class="demo-account" onclick="fillCredentials('Mohamed.Hemilli', 'password')">
+                        <div class="account-type">👨‍🏫 Teacher Account</div>
+                        <div class="account-info">Username: Mohamed.Hemilli | Password: password</div>
+                        <div class="account-details">Mohamed Hemili - Physics Department</div>
+                    </div>
+                </div>
+                
+                <div class="form-footer">
+                    <strong>Note:</strong> All demo accounts use "password" as password<br>
+                    Need help? Contact system administrator
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function fillCredentials(username, password) {
+            document.getElementById('username').value = username;
+            document.getElementById('password').value = password;
+        }
+        
+        // Auto-fill admin credentials for quick testing
+        document.addEventListener('DOMContentLoaded', function() {
+            fillCredentials('admin', 'password');
+        });
+    </script>
+</body>
+</html>
