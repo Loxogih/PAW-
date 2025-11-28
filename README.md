@@ -1,4 +1,4 @@
-# PANV - University Attendance Management System
+# PAW - University Attendance Management System
 ## Université Alger 1 - Benyoucef Benkhedda
 
 ## 📋 Project Overview
